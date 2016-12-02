@@ -11,7 +11,10 @@ import org.springframework.stereotype.Component;
 
 import com.lzk.model.Transaction;
 
+import lombok.extern.java.Log;
+
 @Component
+@Log
 public class DatastoreComponent {
 	
 	private ConcurrentNavigableMap<Long, List<Transaction>> transactions;
@@ -23,10 +26,12 @@ public class DatastoreComponent {
 	}
 	
 	public synchronized void addTransaction(Transaction t){
+		log.info("Adding transaction: "+t);
 		List<Transaction> transactionAtGivenTime = transactions.get(t.getTimestamp());
 		if(transactionAtGivenTime == null) transactionAtGivenTime = new ArrayList<>();
 		transactionAtGivenTime.add(t);
 		transactions.put(t.getTimestamp(), transactionAtGivenTime);
+		log.info("Trigerring aggregator");
 		aggregate();
 	}
 

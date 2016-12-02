@@ -1,13 +1,17 @@
 package com.lzk.components;
 
 import java.util.List;
-import java.util.stream.DoubleStream;
 
 import org.springframework.stereotype.Component;
 
+import com.lzk.model.Statistics;
 import com.lzk.model.Transaction;
+import com.lzk.presenter.StatsPresenter;
+
+import lombok.extern.java.Log;
 
 @Component
+@Log
 public class StatsAggregatorComponent {
 
 	private Double sum;
@@ -17,14 +21,18 @@ public class StatsAggregatorComponent {
 	private Long count;
 
 	public synchronized void aggreate(List<Transaction> validTransactions) {
-		DoubleStream doubleStream = validTransactions.parallelStream().mapToDouble(a -> a.getAmount());
-		this.avg = doubleStream.average().getAsDouble();
-		this.sum = doubleStream.sum();
-		this.max = doubleStream.max().getAsDouble();
-		this.min = doubleStream.min().getAsDouble();
+		log.info("Valid transactions: "+validTransactions);
+		this.avg = validTransactions.parallelStream().mapToDouble(a -> a.getAmount()).average().getAsDouble();
+		this.sum = validTransactions.parallelStream().mapToDouble(a -> a.getAmount()).sum();
+		this.max = validTransactions.parallelStream().mapToDouble(a -> a.getAmount()).max().getAsDouble();
+		this.min = validTransactions.parallelStream().mapToDouble(a -> a.getAmount()).min().getAsDouble();
 		this.count = new Long(validTransactions.size());
 	}
 	
+	public Statistics getResult(){
+		return new StatsPresenter(sum, avg, max, min, count).present();
+	}
+		
 	public Double getSum() {
 		return sum;
 	}

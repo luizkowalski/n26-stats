@@ -1,21 +1,24 @@
 package com.lzk.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import com.lzk.components.DatastoreComponent;
+import com.lzk.components.StatsAggregatorComponent;
+import com.lzk.model.Statistics;
 
 @Controller
 public class StatisticsController {
 
-	private DatastoreComponent datastoreComponent;
+	private StatsAggregatorComponent aggregator;
 	
-	public StatisticsController(@Autowired DatastoreComponent component) {
-		this.datastoreComponent = component;
+	public StatisticsController(@Autowired StatsAggregatorComponent aggregator) {
+		this.aggregator = aggregator;
 	}
 	
-//	@GetMapping("/statistics")
-//	public ResponseEntity<Collection<Transaction>> getStatistics(){
-//		return ResponseEntity.ok(datastoreComponent.getTransactions());
-//	}
+	@GetMapping("/statistics")
+	public ResponseEntity<Statistics> getStatistics(){
+		return ResponseEntity.ok(aggregator.getResult());
+	}
 }
