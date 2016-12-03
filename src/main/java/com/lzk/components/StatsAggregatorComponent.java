@@ -1,6 +1,8 @@
 package com.lzk.components;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -18,11 +20,14 @@ public class StatsAggregatorComponent {
 	public synchronized void aggreate(List<Transaction> validTransactions) {
 		if(validTransactions == null || validTransactions.isEmpty())
 			return;
-		this.avg = validTransactions.parallelStream().mapToDouble(a -> a.getAmount()).average().getAsDouble();
-		this.sum = validTransactions.parallelStream().mapToDouble(a -> a.getAmount()).sum();
-		this.max = validTransactions.parallelStream().mapToDouble(a -> a.getAmount()).max().getAsDouble();
-		this.min = validTransactions.parallelStream().mapToDouble(a -> a.getAmount()).min().getAsDouble();
-		this.count = new Long(validTransactions.size());
+
+		DoubleSummaryStatistics stats = validTransactions.parallelStream()
+																		 .collect(Collectors.summarizingDouble(Transaction::getAmount));
+		this.avg = stats.getAverage();
+		this.sum = stats.getSum();
+		this.max = stats.getMax();
+		this.min = stats.getMin();
+		this.count = stats.getCount();
 	}
 	
 	public Double getSum() {

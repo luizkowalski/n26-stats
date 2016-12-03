@@ -15,7 +15,7 @@ public class StatisticsPresenterTest {
 	private StatisticsPresenter presenter = null;
 	
 	@Before
-	public void before(){
+	public void setUp(){
 		presenter = new StatisticsPresenter(10D, 11D, 13D, 12D, 14L);
 	}
 	
