@@ -19,7 +19,7 @@ public class TransactionController {
 		this.dataStore = dataStore;
 	}
 	
-	@PostMapping("/transactions")
+	@PostMapping(path="/transactions", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<Void> addTransaction(@RequestBody Transaction transaction){
 		dataStore.addTransaction(transaction);
 		return ResponseEntity.status(HttpStatus.CREATED).build();

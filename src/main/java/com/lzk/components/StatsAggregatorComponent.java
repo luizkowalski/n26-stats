@@ -9,11 +9,11 @@ import com.lzk.models.Transaction;
 @Component
 public class StatsAggregatorComponent {
 
-	private Double sum;
-	private Double avg;
-	private Double max;
-	private Double min;
-	private Long count;
+	private Double sum = 0D;
+	private Double avg = 0D;
+	private Double max = 0D;
+	private Double min = 0D;
+	private Long count = 0L;
 
 	public synchronized void aggreate(List<Transaction> validTransactions) {
 		if(validTransactions == null || validTransactions.isEmpty())
