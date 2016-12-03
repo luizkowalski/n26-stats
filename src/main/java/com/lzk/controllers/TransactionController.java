@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lzk.components.DatastoreComponent;
-import com.lzk.model.Transaction;
+import com.lzk.models.Transaction;
 
 @Controller
 public class TransactionController {

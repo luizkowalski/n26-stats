@@ -1,6 +1,6 @@
 package com.lzk.presenter;
 
-import com.lzk.model.Statistic;
+import com.lzk.models.Statistic;
 
 import lombok.AllArgsConstructor;
 

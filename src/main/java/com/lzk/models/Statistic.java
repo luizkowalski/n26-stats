@@ -1,4 +1,4 @@
-package com.lzk.model;
+package com.lzk.models;
 
 import java.io.Serializable;
 

@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 
 import org.springframework.stereotype.Component;
 
-import com.lzk.model.Transaction;
+import com.lzk.models.Transaction;
 
 import lombok.extern.java.Log;
 

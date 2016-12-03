@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.lzk.components.DatastoreComponent;
 import com.lzk.components.StatsAggregatorComponent;
-import com.lzk.model.Statistic;
-import com.lzk.model.Transaction;
+import com.lzk.models.Statistic;
+import com.lzk.models.Transaction;
 import com.lzk.presenter.StatisticsPresenter;
 
 @Component
