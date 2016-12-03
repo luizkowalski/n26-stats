@@ -29,7 +29,7 @@ public class DatastoreComponent {
 		return transactions.put(t.getTimestamp(), transactionAtGivenTime);
 	}
 
-	public ConcurrentNavigableMap<Long, List<Transaction>> getTransactions() {
+	public synchronized ConcurrentNavigableMap<Long, List<Transaction>> getTransactions() {
 		return transactions;
 	}
 	
