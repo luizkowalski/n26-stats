@@ -21,8 +21,9 @@ public class StatsAggregatorComponent {
 		if(validTransactions == null || validTransactions.isEmpty())
 			return;
 
-		DoubleSummaryStatistics stats = validTransactions.parallelStream()
-																		 .collect(Collectors.summarizingDouble(Transaction::getAmount));
+		DoubleSummaryStatistics stats = validTransactions
+				.parallelStream().collect(Collectors.summarizingDouble(Transaction::getAmount));
+		
 		this.avg = stats.getAverage();
 		this.sum = stats.getSum();
 		this.max = stats.getMax();

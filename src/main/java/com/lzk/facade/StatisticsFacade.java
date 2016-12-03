@@ -24,11 +24,11 @@ public class StatisticsFacade {
 	public StatisticsFacade aggregate(){
 		List<Transaction> validTransactions = dataStore.getTransactions()
 				.tailMap(sixtySecondsAgo())
-				.values()
-				.parallelStream()
-				.flatMap(l -> l.stream())
+				.values().stream()
+				.flatMap(t -> t.stream())
 				.collect(Collectors.toList());
-				statsAgg.aggreate(validTransactions);
+
+		statsAgg.aggreate(validTransactions);
 		return this;
 	}
 
