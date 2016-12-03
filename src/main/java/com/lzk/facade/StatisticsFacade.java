@@ -33,7 +33,10 @@ public class StatisticsFacade {
 	}
 
 	public Statistic andPresent(){
-		return new StatisticsPresenter(statsAgg.getSum(), statsAgg.getAvg(), statsAgg.getMax(), statsAgg.getMin(), statsAgg.getCount()).present();
+		return new StatisticsPresenter(
+				statsAgg.getSum(), statsAgg.getAvg(), 
+				statsAgg.getMax(), statsAgg.getMin(), 
+				statsAgg.getCount()).present();
 	}
 
 	private Long sixtySecondsAgo(){

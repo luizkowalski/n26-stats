@@ -14,13 +14,13 @@ import lombok.extern.java.Log;
 @Component
 @Log
 public class DatastoreComponent {
-	
+
 	private ConcurrentNavigableMap<Long, List<Transaction>> transactions;
-	
+
 	public DatastoreComponent() {
 		this.transactions = new ConcurrentSkipListMap<>();
 	}
-	
+
 	public synchronized List<Transaction> addTransaction(Transaction t){
 		log.info("Adding transaction: "+t);
 		List<Transaction> transactionAtGivenTime = transactions.get(t.getTimestamp());
@@ -32,9 +32,8 @@ public class DatastoreComponent {
 	public synchronized ConcurrentNavigableMap<Long, List<Transaction>> getTransactions() {
 		return transactions;
 	}
-	
+
 	public synchronized void clearTransactions(){
 		transactions.clear();
 	}
-	
 }

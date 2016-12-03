@@ -16,7 +16,7 @@ public class StatisticsController {
 	public StatisticsController(@Autowired StatisticsFacade facade) {
 		this.facade = facade;
 	}
-	
+
 	@GetMapping(path="/statistics", produces = "application/json")
 	public ResponseEntity<Statistic> getStatistics(){
 		return ResponseEntity.ok(facade.aggregate().andPresent());

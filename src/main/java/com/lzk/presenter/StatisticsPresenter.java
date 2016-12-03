@@ -12,8 +12,7 @@ public class StatisticsPresenter {
 	private Double max;
 	private Double min;
 	private Long count;
-	
-	
+
 	public Statistic present(){
 		return new Statistic(sum, avg, max, min, count);
 	}

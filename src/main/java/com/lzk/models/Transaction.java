@@ -17,6 +17,6 @@ public class Transaction implements Serializable{
 
 	private Double amount;
 	private Long timestamp;
-	
-	
+
+
 }
