@@ -21,12 +21,12 @@ public class DatastoreComponent {
 		this.transactions = new ConcurrentSkipListMap<>();
 	}
 	
-	public synchronized void addTransaction(Transaction t){
+	public synchronized List<Transaction> addTransaction(Transaction t){
 		log.info("Adding transaction: "+t);
 		List<Transaction> transactionAtGivenTime = transactions.get(t.getTimestamp());
 		if(transactionAtGivenTime == null) transactionAtGivenTime = new ArrayList<>();
 		transactionAtGivenTime.add(t);
-		transactions.put(t.getTimestamp(), transactionAtGivenTime);
+		return transactions.put(t.getTimestamp(), transactionAtGivenTime);
 	}
 
 	public ConcurrentNavigableMap<Long, List<Transaction>> getTransactions() {
