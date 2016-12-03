@@ -33,4 +33,8 @@ public class DatastoreComponent {
 		return transactions;
 	}
 	
+	public synchronized void clearTransactions(){
+		transactions.clear();
+	}
+	
 }
