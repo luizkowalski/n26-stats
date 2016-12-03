@@ -1,11 +1,11 @@
 package com.lzk.presenter;
 
-import com.lzk.model.Statistics;
+import com.lzk.model.Statistic;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class StatsPresenter {
+public class StatisticsPresenter {
 
 	private Double sum;
 	private Double avg;
@@ -14,8 +14,8 @@ public class StatsPresenter {
 	private Long count;
 	
 	
-	public Statistics present(){
-		return new Statistics(sum, avg, max, min, count);
+	public Statistic present(){
+		return new Statistic(sum, avg, max, min, count);
 	}
 
 }

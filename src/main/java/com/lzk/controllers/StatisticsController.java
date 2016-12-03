@@ -5,20 +5,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.lzk.components.StatsAggregatorComponent;
-import com.lzk.model.Statistics;
+import com.lzk.facade.StatisticsFacade;
+import com.lzk.model.Statistic;
 
 @Controller
 public class StatisticsController {
 
-	private StatsAggregatorComponent aggregator;
-	
-	public StatisticsController(@Autowired StatsAggregatorComponent aggregator) {
-		this.aggregator = aggregator;
+	private StatisticsFacade facade;
+
+	public StatisticsController(@Autowired StatisticsFacade facade) {
+		this.facade = facade;
 	}
 	
 	@GetMapping("/statistics")
-	public ResponseEntity<Statistics> getStatistics(){
-		return ResponseEntity.ok(aggregator.getResult());
+	public ResponseEntity<Statistic> getStatistics(){
+		return ResponseEntity.ok(facade.aggregate().andPresent());
 	}
 }
